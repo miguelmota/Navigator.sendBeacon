@@ -16,7 +16,7 @@ bower install navigator.sendbeacon
 
 # Usage
 
-Read the [MDN Navigator.sendBeacon() docs](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/sendBeacon).
+Read the [MDN Navigator.sendBeacon()](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/sendBeacon) documentation.
 
 # License
 
