@@ -2,7 +2,7 @@
 
 Polyfill for [Navigator.sendBeacon()](http://www.w3.org/TR/beacon/#sec-sendBeacon-method)
 
-[![NPM](https://nodei.co/npm/sendbeacon-polyfill.png)](https://nodei.co/npm/sendbeacon-polyfill)
+[![NPM](https://nodei.co/npm/navigator.sendbeacon.png)](https://nodei.co/npm/navigator.sendbeacon)
 
 # Install
 
