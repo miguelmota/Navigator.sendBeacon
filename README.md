@@ -7,11 +7,11 @@ Polyfill for [Navigator.sendBeacon()](http://www.w3.org/TR/beacon/#sec-sendBeaco
 # Install
 
 ```bash
-npm install navigator.sendBeacon
+npm install navigator.sendbeacon
 ```
 
 ```bash
-bower install navigator.sendBeacon
+bower install navigator.sendbeacon
 ```
 
 # Usage
