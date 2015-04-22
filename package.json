@@ -1,0 +1,30 @@
+{
+  "name": "sendbeacon-polyfill",
+  "version": "0.0.1",
+  "description": "Polyfill for navigator.sendBeacon()",
+  "main": "sendbeacon-polyfill.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "tape test/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/miguelmota/sendbeacon-polyfill"
+  },
+  "keywords": [
+    "navigator",
+    "beacon",
+    "polyfill"
+  ],
+  "author": "Miguel Mota <hello@miguelmota.com> (http://www.miguelmota.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/miguelmota/sendbeacon-polyfill/issues"
+  },
+  "homepage": "https://github.com/miguelmota/sendbeacon-polyfill",
+  "dependencies": {
+    "tape": "^3.0.3"
+  }
+}
