@@ -3,7 +3,7 @@
 
   if (!('sendBeacon' in navigator)) {
     navigator.sendBeacon1 = function(url, data) {
-      var xhr = new XMLHttpRequest();
+      var xhr = ('XMLHttpRequest' in root) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
       xhr.open('POST', url, false);
       xhr.setRequestHeader('Accept', '*/*');
       if (typeof data === 'string') {
