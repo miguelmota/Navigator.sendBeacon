@@ -24,7 +24,7 @@
     "url": "https://github.com/miguelmota/Navigator.sendBeacon/issues"
   },
   "homepage": "https://github.com/miguelmota/Navigator.sendBeacon",
-  "dependencies": {
+  "devDependencies": {
     "tape": "^3.0.3"
   }
 }
