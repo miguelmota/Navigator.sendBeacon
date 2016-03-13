@@ -1,7 +1,7 @@
 {
   "name": "navigator.sendbeacon",
-  "main": "Navigator.sendBeacon.js",
-  "version": "0.0.2",
+  "main": "sendbeacon.js",
+  "version": "0.0.3",
   "homepage": "https://github.com/miguelmota/Navigator.sendBeacon",
   "authors": [
     "Miguel Mota <miguelmota2@gmail.com>"
