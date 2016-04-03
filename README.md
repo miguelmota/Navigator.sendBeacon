@@ -11,7 +11,7 @@ npm install navigator.sendbeacon
 ```
 
 ```bash
-bower install navigator.sendbeacon
+bower install navigator-sendbeacon
 ```
 
 # Usage
