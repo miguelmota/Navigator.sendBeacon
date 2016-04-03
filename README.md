@@ -1,4 +1,4 @@
-# sendbeacon-polyfill
+# Navigator.sendBeacon polyfill
 
 Polyfill for [Navigator.sendBeacon()](http://www.w3.org/TR/beacon/#sec-sendBeacon-method)
 
