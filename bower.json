@@ -1,5 +1,5 @@
 {
-  "name": "navigator.sendbeacon",
+  "name": "navigator-sendbeacon",
   "main": "sendbeacon.js",
   "version": "0.0.3",
   "homepage": "https://github.com/miguelmota/Navigator.sendBeacon",
