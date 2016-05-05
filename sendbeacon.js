@@ -26,7 +26,7 @@
     define([], function() {
       return sendBeacon;
     });
-  } else if ('navigator' in root && 'sendBeacon' in root.navigator) {
+  } else if ('navigator' in root && !('sendBeacon' in root.navigator)) {
     root.navigator.sendBeacon = sendBeacon;
   }
 })(this);
