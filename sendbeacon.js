@@ -17,10 +17,6 @@
     return true;
   }
 
-  if (!('sendBeacon' in navigator)) {
-    navigator.sendBeacon = sendBeacon;
-  }
-
   if (typeof exports !== 'undefined') {
     if (typeof module !== 'undefined' && module.exports) {
       exports = module.exports = sendBeacon;
@@ -30,5 +26,7 @@
     define([], function() {
       return sendBeacon;
     });
+  } else if ('navigator' in root && !('sendBeacon' in root.navigator)) {
+    root.navigator.sendBeacon = sendBeacon;
   }
 })(this);
