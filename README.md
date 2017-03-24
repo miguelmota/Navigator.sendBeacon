@@ -10,10 +10,6 @@ Polyfill for [Navigator.sendBeacon()](http://www.w3.org/TR/beacon/#sec-sendBeaco
 npm install navigator.sendbeacon
 ```
 
-```bash
-bower install navigator-sendbeacon
-```
-
 # Usage
 
 Read the [MDN Navigator.sendBeacon()](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/sendBeacon) documentation.
