@@ -1,6 +1,6 @@
 {
   "name": "navigator.sendbeacon",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Polyfill for navigator.sendBeacon()",
   "main": "sendbeacon.js",
   "directories": {
