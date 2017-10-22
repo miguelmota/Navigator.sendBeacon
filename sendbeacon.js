@@ -1,7 +1,10 @@
-(function(root) {
+;(function(root) {
   'use strict';
 
-  function sendBeacon(url, data) {
+  var isSupported = (('navigator' in root) &&
+                     ('sendBeacon' in root.navigator));
+
+  var sendBeacon = function (url, data) {
     var xhr = ('XMLHttpRequest' in window) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
     xhr.open('POST', url, false);
     xhr.withCredentials = true;
@@ -9,14 +12,20 @@
     if (typeof data === 'string') {
       xhr.setRequestHeader('Content-Type', 'text/plain;charset=UTF-8');
       xhr.responseType = 'text/plain';
-    } else if (Object.prototype.toString.call(data) === '[object Blob]') {
+    } else if (({}).toString.call(data) === '[object Blob]') {
       if (data.type) {
         xhr.setRequestHeader('Content-Type', data.type);
       }
     }
 
-    xhr.send(data);
+    try {
+      xhr.send(data);
+    } catch (error) {}
     return true;
+  }
+
+  if (isSupported) {
+    sendBeacon = navigator.sendBeacon;
   }
 
   if (typeof exports !== 'undefined') {
@@ -28,7 +37,7 @@
     define([], function() {
       return sendBeacon;
     });
-  } else if ('navigator' in root && !('sendBeacon' in root.navigator)) {
+  } else if (!isSupported) {
     root.navigator.sendBeacon = sendBeacon;
   }
-})(this);
+})(window || this);
