@@ -6,8 +6,16 @@ Polyfill for [Navigator.sendBeacon()](http://www.w3.org/TR/beacon/#sec-sendBeaco
 
 # Install
 
+Using NPM:
+
 ```bash
 npm install navigator.sendbeacon
+```
+
+Using JavaScript source:
+
+```html
+<script src="./sendbeacon.js"></script>
 ```
 
 # Usage
