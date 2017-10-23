@@ -40,4 +40,4 @@
   } else if (!isSupported) {
     root.navigator.sendBeacon = sendBeacon;
   }
-})(window || this);
+})(typeof window === 'object' ? window : this);
