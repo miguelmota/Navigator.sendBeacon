@@ -25,7 +25,7 @@
   }
 
   if (isSupported) {
-    sendBeacon = navigator.sendBeacon;
+    sendBeacon = navigator.sendBeacon.bind(navigator);
   }
 
   if (typeof exports !== 'undefined') {
