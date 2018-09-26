@@ -10,6 +10,9 @@ function polyfill() {
 };
 
 function sendBeacon(url, data) {
+  var event = this.event && this.event.type;
+  var async = !(event === 'unload' || event === 'beforeunload');
+
   const xhr = ('XMLHttpRequest' in this) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
   xhr.open('POST', url, async);
   xhr.withCredentials = true;
