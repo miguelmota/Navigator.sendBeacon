@@ -2,15 +2,18 @@
   "name": "navigator.sendbeacon",
   "version": "0.0.9",
   "description": "Polyfill for navigator.sendBeacon()",
-  "main": "dist/navigator.sendbeacon.min.js",
+  "main": "dist/navigator.sendbeacon.cjs.js",
   "module": "dist/navigator.sendbeacon.es.js",
-  "directories": {
-    "test": "test"
-  },
+  "unpkg": "dist/navigator.sendbeacon.min.js",
+  "jsdelivr": "dist/navigator.sendbeacon.min.js",
+  "files": [
+    "sendbeacon.js",
+    "dist"
+  ],
   "scripts": {
     "build": "rimraf dist && bili",
-    "lint": "eslint --ext .js,.vue src",
-    "release": "npm run build && np"
+    "prepublish": "npm run build",
+    "release": "np"
   },
   "repository": {
     "type": "git",
@@ -30,7 +33,6 @@
   "devDependencies": {
     "bili": "^3.1.2",
     "np": "^3.0.4",
-    "rimraf": "^2.6.2",
-    "tape": "^3.0.3"
+    "rimraf": "^2.6.2"
   }
 }

@@ -1,4 +1,4 @@
 module.exports = {
   input: 'sendbeacon.js',
-  format: ['umd', 'umd-min', 'es']
+  format: ['cjs', 'umd', 'umd-min', 'es']
 }

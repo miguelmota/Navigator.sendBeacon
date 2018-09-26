@@ -1,4 +1,6 @@
-'use strict';
+const isString = val => typeof val === 'string';
+const isBlob = val => val instanceof Blob;
+const isObject = val => val != null && typeof val == 'object';
 
 polyfill.call(typeof window === 'object' ? window : this);
 
@@ -11,10 +13,10 @@ function polyfill() {
 
 function sendBeacon(url, data) {
   var event = this.event && this.event.type;
-  var async = !(event === 'unload' || event === 'beforeunload');
+  var sync = event === 'unload' || event === 'beforeunload';
 
   const xhr = ('XMLHttpRequest' in this) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-  xhr.open('POST', url, async);
+  xhr.open('POST', url, !sync);
   xhr.withCredentials = true;
   xhr.setRequestHeader('Accept', '*/*');
 
@@ -24,9 +26,6 @@ function sendBeacon(url, data) {
     xhr.responseType = 'text/plain';
   } else if (isBlob(data) && data.type) {
     xhr.setRequestHeader('Content-Type', data.type);
-  } else if (isObject(data)) {
-    data = JSON.stringify(data);
-    xhr.setRequestHeader('Content-Type', 'application/json');
   }
 
   try {
@@ -40,16 +39,4 @@ function sendBeacon(url, data) {
 
 function isSupported() {
   return ('navigator' in this) && ('sendBeacon' in this.navigator);
-}
-
-function isString(val) {
-  return typeof val === 'string';
-}
-
-function isBlob(val) {
-  return val instanceof Blob;
-}
-
-function isObject(val) {
-  return val instanceof Object;
 }
