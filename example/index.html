@@ -5,10 +5,96 @@
   <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=yes">
   <title></title>
 </head>
+<style>
+  input {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    border-radius: 4px;
+  }
+
+  input[type=text] {
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+
+  input[type=submit] {
+    background-color: #448b9c;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+
+  input[type=submit]:hover {
+    background-color: #2d5f6b;
+  }
+
+  div {
+    padding: 20px;
+    width: 600px;
+    margin: 50px auto;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 25px;
+  }
+
+  th, td {
+    text-align: left;
+    padding: 8px;
+  }
+
+  tr:nth-child(even) { background-color: #f2f2f2 }
+
+  th {
+    background-color: #2d5f6b;
+    color: white;
+  }
+</style>
 <body>
+  <div>
+    <label for="urlInput">Url</label>
+    <input id="urlInput" type="text" placeholder="Enter beacon url">
+
+    <label for="msgInput">Message</label>
+    <input id="msgInput" type="text" placeholder="Enter beacon message">
+
+    <input onclick="sendBeacon()" type="submit" value="Send Beacon">
+
+    <table id="sentBeacons">
+      <tr>
+        <th>Url</th>
+        <th>Messagge</th>
+        <th>Is sent</th>
+      </tr>
+    </table>
+  </div>
+
   <script src="../dist/navigator.sendbeacon.min.js"></script>
   <script>
-    navigator.sendBeacon('https://example.com')
+    var msgInput = document.getElementById('msgInput');
+    var urlInput = document.getElementById('urlInput');
+    var sentTable = document.getElementById('sentBeacons');
+    var lastUrl = '';
+    var lastMsg = '';
+    addEventListener('unload', () => sendBeacon(lastUrl, 'Unload: ' + lastMsg));
+
+    function sendBeacon(url, message) {
+      lastMsg = message || msgInput.value;
+      lastUrl = url || urlInput.value;
+      var isSent = navigator.sendBeacon(lastUrl, lastMsg);
+      addSentRow(lastUrl, lastMsg, isSent);
+    }
+
+    function addSentRow(url, message, isSent) {
+      var newRow = sentTable.insertRow(1);
+      newRow.insertCell(0).innerHTML = url;
+      newRow.insertCell(1).innerHTML = message;
+      newRow.insertCell(2).innerHTML = isSent;
+    }
   </script>
 </body>
 </html>
