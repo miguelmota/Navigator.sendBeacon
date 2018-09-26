@@ -2,12 +2,15 @@
   "name": "navigator.sendbeacon",
   "version": "0.0.9",
   "description": "Polyfill for navigator.sendBeacon()",
-  "main": "sendbeacon.js",
+  "main": "dist/navigator.sendbeacon.min.js",
+  "module": "dist/navigator.sendbeacon.es.js",
   "directories": {
     "test": "test"
   },
   "scripts": {
-    "test": "tape test/*.js"
+    "build": "rimraf dist && bili",
+    "lint": "eslint --ext .js,.vue src",
+    "release": "npm run build && np"
   },
   "repository": {
     "type": "git",
@@ -25,6 +28,9 @@
   },
   "homepage": "https://github.com/miguelmota/Navigator.sendBeacon",
   "devDependencies": {
+    "bili": "^3.1.2",
+    "np": "^3.0.4",
+    "rimraf": "^2.6.2",
     "tape": "^3.0.3"
   }
 }
