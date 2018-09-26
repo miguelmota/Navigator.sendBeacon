@@ -1,43 +1,52 @@
-;(function(root) {
-  'use strict';
+'use strict';
 
-  var isSupported = (('navigator' in root) &&
-                     ('sendBeacon' in root.navigator));
+polyfill.call(typeof window === 'object' ? window : this);
 
-  var sendBeacon = function (url, data) {
-    var xhr = ('XMLHttpRequest' in window) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-    xhr.open('POST', url, false);
-    xhr.withCredentials = true;
-    xhr.setRequestHeader('Accept', '*/*');
-    if (typeof data === 'string') {
-      xhr.setRequestHeader('Content-Type', 'text/plain;charset=UTF-8');
-      xhr.responseType = 'text/plain';
-    } else if (({}).toString.call(data) === '[object Blob]') {
-      if (data.type) {
-        xhr.setRequestHeader('Content-Type', data.type);
-      }
-    }
+function polyfill() {
+  if (isSupported.call(this)) return;
 
-    try {
-      xhr.send(data);
-    } catch (error) {}
-    return true;
+  if (!('navigator' in this)) this.navigator = {};
+  this.navigator.sendBeacon = sendBeacon.bind(this);
+};
+
+function sendBeacon(url, data) {
+  const xhr = ('XMLHttpRequest' in this) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+  xhr.open('POST', url, async);
+  xhr.withCredentials = true;
+  xhr.setRequestHeader('Accept', '*/*');
+
+
+  if (isString(data)) {
+    xhr.setRequestHeader('Content-Type', 'text/plain;charset=UTF-8');
+    xhr.responseType = 'text/plain';
+  } else if (isBlob(data) && data.type) {
+    xhr.setRequestHeader('Content-Type', data.type);
+  } else if (isObject(data)) {
+    data = JSON.stringify(data);
+    xhr.setRequestHeader('Content-Type', 'application/json');
   }
 
-  if (isSupported) {
-    sendBeacon = navigator.sendBeacon.bind(navigator);
+  try {
+    xhr.send(data);
+  } catch (error) {
+    return false;
   }
 
-  if (typeof exports !== 'undefined') {
-    if (typeof module !== 'undefined' && module.exports) {
-      exports = module.exports = sendBeacon;
-    }
-    exports.sendBeacon = sendBeacon;
-  } else if (typeof define === 'function' && define.amd) {
-    define([], function() {
-      return sendBeacon;
-    });
-  } else if (!isSupported) {
-    root.navigator.sendBeacon = sendBeacon;
-  }
-})(typeof window === 'object' ? window : this);
+  return true;
+}
+
+function isSupported() {
+  return ('navigator' in this) && ('sendBeacon' in this.navigator);
+}
+
+function isString(val) {
+  return typeof val === 'string';
+}
+
+function isBlob(val) {
+  return val instanceof Blob;
+}
+
+function isObject(val) {
+  return val instanceof Object;
+}
