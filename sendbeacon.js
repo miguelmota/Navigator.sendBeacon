@@ -12,8 +12,8 @@ function polyfill() {
 };
 
 function sendBeacon(url, data) {
-  var event = this.event && this.event.type;
-  var sync = event === 'unload' || event === 'beforeunload';
+  const event = this.event && this.event.type;
+  const sync = event === 'unload' || event === 'beforeunload';
 
   const xhr = ('XMLHttpRequest' in this) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
   xhr.open('POST', url, !sync);
