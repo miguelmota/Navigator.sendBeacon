@@ -3,12 +3,64 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=yes">
-  <title></title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+  <link rel="stylesheet" href="//cdn.rawgit.com/necolas/normalize.css/master/normalize.css">
+  <link rel="stylesheet" href="//cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css">
+  <title>sendBeacon polyfill</title>
 </head>
 <body>
-  <script src="../sendbeacon.js"></script>
+  <div class="container">
+    <blockquote>
+      <p><code>navigator.sendBeacon</code> polyfill</p>
+    </blockquote>
+    <div class="row">
+      <form onsubmit="sendBeacon(window.event)" class="column column-50">
+        <fieldset>
+          <label for="urlInput">Url</label>
+          <input id="urlInput" type="text" placeholder="Enter beacon url">
+
+          <label for="msgInput">Message</label>
+          <input id="msgInput" type="text" placeholder="Enter beacon message">
+
+          <input class="button-primary" type="submit" value="Send Beacon">
+        </fieldset>
+      </form>
+    </div>
+    <table id="sentBeacons">
+      <tr>
+        <th>Url</th>
+        <th>Messagge</th>
+        <th>Is sent</th>
+      </tr>
+    </table>
+  </div>
+
+  <script src="../dist/navigator.sendbeacon.min.js"></script>
   <script>
-    navigator.sendBeacon('https://example.com')
+    var msgInput = document.getElementById('msgInput');
+    var urlInput = document.getElementById('urlInput');
+    var sentTable = document.getElementById('sentBeacons');
+    var lastUrl = '';
+    var lastMsg = '';
+
+    addEventListener('unload', function (e) {
+      sendBeacon(e, 'Unload: ' + lastMsg)
+    });
+
+    function sendBeacon(e, url, message) {
+      e.type === 'submit' && e.preventDefault();
+      lastMsg = message || msgInput.value;
+      lastUrl = url || urlInput.value;
+      var isSent = navigator.sendBeacon(lastUrl, lastMsg);
+      addSentRow(lastUrl, lastMsg, isSent);
+    }
+
+    function addSentRow(url, message, isSent) {
+      var newRow = sentTable.insertRow(1);
+      newRow.insertCell(0).innerHTML = url;
+      newRow.insertCell(1).innerHTML = message;
+      newRow.insertCell(2).innerHTML = isSent;
+    }
   </script>
 </body>
 </html>

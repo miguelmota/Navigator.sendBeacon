@@ -2,12 +2,18 @@
   "name": "navigator.sendbeacon",
   "version": "0.0.9",
   "description": "Polyfill for navigator.sendBeacon()",
-  "main": "sendbeacon.js",
-  "directories": {
-    "test": "test"
-  },
+  "main": "dist/navigator.sendbeacon.cjs.js",
+  "module": "dist/navigator.sendbeacon.es.js",
+  "unpkg": "dist/navigator.sendbeacon.min.js",
+  "jsdelivr": "dist/navigator.sendbeacon.min.js",
+  "files": [
+    "sendbeacon.js",
+    "dist"
+  ],
   "scripts": {
-    "test": "tape test/*.js"
+    "build": "rimraf dist && bili",
+    "prepublish": "npm run build",
+    "release": "np"
   },
   "repository": {
     "type": "git",
@@ -25,6 +31,8 @@
   },
   "homepage": "https://github.com/miguelmota/Navigator.sendBeacon",
   "devDependencies": {
-    "tape": "^3.0.3"
+    "bili": "^3.1.2",
+    "np": "^3.0.4",
+    "rimraf": "^2.6.2"
   }
 }

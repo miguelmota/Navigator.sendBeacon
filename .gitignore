@@ -101,3 +101,6 @@ tmp
 #######################
 .VimballRecord
 .netrwhist
+
+# Compiled files
+dist

@@ -15,7 +15,9 @@ npm install navigator.sendbeacon
 Using JavaScript source:
 
 ```html
-<script src="sendbeacon.js"></script>
+<script src="https://unpkg.com/navigator.sendbeacon"></script>
+<!-- OR -->
+<script src="https://cdn.jsdelivr.net/npm/navigator.sendbeacon"></script>
 ```
 
 # Usage
