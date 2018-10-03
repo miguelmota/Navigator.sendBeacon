@@ -2,7 +2,7 @@ const isString = val => typeof val === 'string';
 const isBlob = val => val instanceof Blob;
 const isObject = val => val != null && typeof val == 'object';
 
-polyfill.call(typeof window === 'object' ? window : this);
+polyfill.call(isObject(window) ? window : this);
 
 function polyfill() {
   if (isSupported.call(this)) return;
