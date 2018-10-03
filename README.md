@@ -4,7 +4,7 @@ Polyfill for [Navigator.sendBeacon()](http://www.w3.org/TR/beacon/#sec-sendBeaco
 
 [![NPM](https://nodei.co/npm/navigator.sendbeacon.png)](https://nodei.co/npm/navigator.sendbeacon)
 
-# Install
+## Install
 
 Using NPM:
 
@@ -20,10 +20,10 @@ Using JavaScript source:
 <script src="https://cdn.jsdelivr.net/npm/navigator.sendbeacon"></script>
 ```
 
-# Usage
+## Usage
 
 Read the [MDN Navigator.sendBeacon()](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/sendBeacon) documentation.
 
-# License
+## License
 
 MIT
