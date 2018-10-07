@@ -1,2 +1,3 @@
 # Convert line endings to LF (Line Feed)
 * text=auto
+example/* linguist-documentation
