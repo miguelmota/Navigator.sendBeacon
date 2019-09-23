@@ -1,6 +1,6 @@
 {
   "name": "navigator.sendbeacon",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "Polyfill for navigator.sendBeacon()",
   "main": "dist/navigator.sendbeacon.cjs.js",
   "module": "dist/navigator.sendbeacon.es.js",
@@ -13,7 +13,8 @@
   "scripts": {
     "build": "rimraf dist && bili",
     "prepublish": "npm run build",
-    "release": "np"
+    "release": "np",
+    "lint": "standard --fix *.js"
   },
   "repository": {
     "type": "git",
@@ -33,6 +34,14 @@
   "devDependencies": {
     "bili": "^3.1.2",
     "np": "^3.0.4",
-    "rimraf": "^2.6.2"
+    "rimraf": "^2.6.2",
+    "standard": "^14.3.1"
+  },
+  "standard": {
+    "globals": [
+      "Blob",
+      "XMLHttpRequest",
+      "ActiveXObject"
+    ]
   }
 }

@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
   <link rel="stylesheet" href="//cdn.rawgit.com/necolas/normalize.css/master/normalize.css">
   <link rel="stylesheet" href="//cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css">
-  <title>sendBeacon polyfill</title>
+  <title>Navigator.sendBeacon polyfill</title>
 </head>
 <body>
   <div class="container">
@@ -37,29 +37,32 @@
 
   <script src="../dist/navigator.sendbeacon.min.js"></script>
   <script>
-    var msgInput = document.getElementById('msgInput');
-    var urlInput = document.getElementById('urlInput');
-    var sentTable = document.getElementById('sentBeacons');
-    var lastUrl = '';
-    var lastMsg = '';
+    var msgInput = document.getElementById('msgInput')
+    var urlInput = document.getElementById('urlInput')
+    var sentTable = document.getElementById('sentBeacons')
+    var lastUrl = ''
+    var lastMsg = ''
 
-    addEventListener('unload', function (e) {
+    window.onbeforeunload = function(e) {
       sendBeacon(e, 'Unload: ' + lastMsg)
-    });
+
+      // empty return is required to not show popup
+      return
+    }
 
     function sendBeacon(e, url, message) {
-      e.type === 'submit' && e.preventDefault();
-      lastMsg = message || msgInput.value;
-      lastUrl = url || urlInput.value;
-      var isSent = navigator.sendBeacon(lastUrl, lastMsg);
-      addSentRow(lastUrl, lastMsg, isSent);
+      e.type === 'submit' && e.preventDefault()
+      lastMsg = message || msgInput.value
+      lastUrl = url || urlInput.value
+      var isSent = navigator.sendBeacon(lastUrl, lastMsg)
+      addSentRow(lastUrl, lastMsg, isSent)
     }
 
     function addSentRow(url, message, isSent) {
-      var newRow = sentTable.insertRow(1);
-      newRow.insertCell(0).innerHTML = url;
-      newRow.insertCell(1).innerHTML = message;
-      newRow.insertCell(2).innerHTML = isSent;
+      var newRow = sentTable.insertRow(1)
+      newRow.insertCell(0).innerHTML = url
+      newRow.insertCell(1).innerHTML = message
+      newRow.insertCell(2).innerHTML = isSent
     }
   </script>
 </body>
