@@ -6,7 +6,10 @@ polyfill.call(typeof window === 'object' ? window : this || {})
 function polyfill () {
   if (isSupported.call(this)) return
 
-  if (!('navigator' in this)) this.navigator = {}
+  if (!('navigator' in this && typeof this.navigator === 'function')) {
+    this.navigator = {}
+  }
+
   this.navigator.sendBeacon = sendBeacon.bind(this)
 }
 
