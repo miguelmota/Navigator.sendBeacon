@@ -50,7 +50,7 @@
 
     if (isString(data)) {
       xhr.setRequestHeader('Content-Type', 'text/plain;charset=UTF-8');
-      xhr.responseType = 'text/plain';
+      xhr.responseType = 'text';
     } else if (isBlob(data) && data.type) {
       xhr.setRequestHeader('Content-Type', data.type);
     }
