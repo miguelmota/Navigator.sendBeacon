@@ -29,8 +29,6 @@
   polyfill.call((typeof window === "undefined" ? "undefined" : _typeof(window)) === 'object' ? window : undefined || {});
 
   function polyfill() {
-    if (isSupported.call(this)) return;
-
     if (!('navigator' in this)) {
       this.navigator = {};
     }
@@ -62,10 +60,6 @@
     }
 
     return true;
-  }
-
-  function isSupported() {
-    return 'navigator' in this && 'sendBeacon' in this.navigator;
   }
 
 })));

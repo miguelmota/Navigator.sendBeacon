@@ -25,8 +25,6 @@ var isBlob = function isBlob(val) {
 polyfill.call((typeof window === "undefined" ? "undefined" : _typeof(window)) === 'object' ? window : undefined || {});
 
 function polyfill() {
-  if (isSupported.call(this)) return;
-
   if (!('navigator' in this)) {
     this.navigator = {};
   }
@@ -58,8 +56,4 @@ function sendBeacon(url, data) {
   }
 
   return true;
-}
-
-function isSupported() {
-  return 'navigator' in this && 'sendBeacon' in this.navigator;
 }
