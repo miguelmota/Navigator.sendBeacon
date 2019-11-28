@@ -4,8 +4,6 @@ const isBlob = val => val instanceof Blob
 polyfill.call(typeof window === 'object' ? window : this || {})
 
 function polyfill () {
-  if (isSupported.call(this)) return
-
   if (!('navigator' in this)) {
     this.navigator = {}
   }
@@ -38,8 +36,4 @@ function sendBeacon (url, data) {
   }
 
   return true
-}
-
-function isSupported () {
-  return ('navigator' in this) && ('sendBeacon' in this.navigator)
 }
