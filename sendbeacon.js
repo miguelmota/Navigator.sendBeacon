@@ -15,10 +15,9 @@ function polyfill () {
 
 function sendBeacon (url, data) {
   const event = this.event && this.event.type
-  const sync = event === 'unload' || event === 'beforeunload'
 
   const xhr = ('XMLHttpRequest' in this) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP')
-  xhr.open('POST', url, !sync)
+  xhr.open('POST', url, false)
   xhr.withCredentials = true
   xhr.setRequestHeader('Accept', '*/*')
 
